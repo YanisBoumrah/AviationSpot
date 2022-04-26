@@ -5,6 +5,8 @@ import Map from './components/Map/Map'
 import Navbar from './components/Navbar/Navbar';
 import styled from 'styled-components'
 import GlobalStyle from './globalStyles';
+import Fade from 'react-reveal/Fade'
+
 function App() {
 
   return (
@@ -12,10 +14,12 @@ function App() {
       <GlobalStyle/>
       <Navbar/>
       <Infobox />
+      <Fade delay={5000}>
       <Wrapper>
         <List/>      
         <Map/>
       </Wrapper>
+      </Fade>
       <Footer/>
       
 

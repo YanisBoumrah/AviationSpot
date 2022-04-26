@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import plane from '../../img/plane.png'
-
+import Fade from 'react-reveal/Fade'
 const Infobox = (
   ) => {
   
@@ -10,22 +10,36 @@ const Infobox = (
         <Container>
           <InfoRaw>
             <InfoColumn>
-          
+            
           <TextWrapper>
               <Title>
+              <Fade delay={1000}>
               Aviation Spot
+              </Fade>
               </Title>
               <SubTitle>
+              <Fade delay={2000}>
               Lead Generation Specialist for Online Businesses
+              </Fade>
               </SubTitle>
-              <Text>Welcome to aviations spot you will find within our company all the detailed information about the aviation traffic</Text>
+
+              <Text>
+              <Fade delay={3000}>
+                Welcome to aviations spot you will find within our company all
+                 the detailed information about the aviation traffic
+                 </Fade>
+                </Text>
           </TextWrapper>
+         
           </InfoColumn>
           <InfoColumn>
+          <Fade delay={4000}>
           <ImgWrapper>
             <Img src={plane} alt='alt'></Img>
           </ImgWrapper>
+          </Fade>
           </InfoColumn>
+
           </InfoRaw>
         </Container>
       </Div>

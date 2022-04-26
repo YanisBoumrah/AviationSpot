@@ -8,15 +8,19 @@ import {
     FaLinkedin,
     FaAvianex
   } from 'react-icons/fa';
+  import Jump from 'react-reveal/Jump';
+
  
 
 const Footer = () => {
     return (
         <FooterContainer>
       <FooterSubscription>
+        <Jump>
         <FooterSubHeading>
           Join our exclusive membership to receive the latest news and trends
         </FooterSubHeading>
+        </Jump>
         </FooterSubscription>
         <SocialMedia>
         <SocialMediaWrap>
