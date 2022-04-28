@@ -15,10 +15,7 @@ function App() {
       <Navbar/>
       <Infobox />
       <Fade delay={5000}>
-      <Wrapper>
-        <List/>      
-        <Map/>
-      </Wrapper>
+      <Map/>
       </Fade>
       <Footer/>
       
@@ -29,13 +26,3 @@ function App() {
 
 export default App;
 
-const Wrapper = styled.div`
-width:100%;
-height:100%;
-display:flex;
-flex-wrap: wrap;
-flex-direction:row;
-align-items: center;
-justify-content: space-evenly;
-background-color: red;
-`

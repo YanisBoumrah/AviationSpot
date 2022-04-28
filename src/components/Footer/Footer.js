@@ -28,7 +28,7 @@ const Footer = () => {
             <FaAvianex />
             AviationSpot
           </SocialLogo>
-          <WebsiteRights>AviationSpot © 2020</WebsiteRights>
+          <WebsiteRights>AviationSpot © 2022</WebsiteRights>
           <SocialIcons>
             <SocialIconLink href={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} target='_blank' aria-label='Facebook'>
               <FaFacebook />

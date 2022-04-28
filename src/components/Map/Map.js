@@ -7,20 +7,57 @@ import axios from 'axios'
 import styled from 'styled-components'
  
 const markerIcon = new L.Icon({
-    iconUrl: require("../../img/plane.png"),
-    iconSize: [30, 30],});
+    iconUrl: require("../../img/markerplane.png"),
+    iconSize: [20, 20],});
+
 
 const Map = () => {
-    const [flightData,setFlightData] = useState([])
 
-  useEffect(()=>{
-      axios.get('https://localhost:44394/api/histories')
+    const [flightData,setFlightData] = useState([])
+    const [volData,setVolData] = useState([])
+    const [data, setData] = useState([])
+
+    const getFlights = ()=>{
+      axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories')
         .then(response =>{
           setFlightData(response.data)
-        console.log(response.data)
       })
+    }
 
+    const getVols = ()=>{
+      axios.get('https://apiazure20220422105354.azurewebsites.net/api/vols')
+        .then(response =>{
+          setVolData(response.data)
+      })
+    }
+
+    const fetchFinalData = () =>{
+      const result =
+      flightData.map((x,index) =>{
+        var item = {}
+        item.id = x.id
+        item.numVol = x.numVol
+        item.dateHist = x.dateHist
+        item.lat = x.lat
+        item.longe = x.longe
+        item.speed = x.speed
+        item.code_comp = volData[index].code_comp
+        item.numAvion = volData[index].numAvion
+        item.dep = volData[index].dep
+        item.arr = volData[index].arr
+        return item
+      })
+      setData(result)
+    }
+
+ 
+  useEffect(()=>{
+    getFlights()
+    getVols()
+    fetchFinalData()
   },[])
+
+  console.log(data)
 
     return (
         <Div>
@@ -29,21 +66,32 @@ const Map = () => {
         [85, -170],
         //north east
         [-85, 200]
-        ]} style={{ width: '50vw', height: '70vh'}}
+        ]} style={{ width: '80vw', height: '90vh'}}
         >
                 <TileLayer
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
                     url="https://api.maptiler.com/maps/topo/256/{z}/{x}/{y}.png?key=GaGGXp9Fk2x7gfEG8lWP"
                     
                     />
-                {flightData.map( flight => {
+                {data.map( flight => {
                     return(<Marker 
                         position={[flight.lat, flight.longe]}
                             icon={markerIcon}
-                            >
-                            <Popup>
-                              A pretty CSS3 popup
-                            </Popup>
+                        >
+                                <Popup>
+                                  N° Vol : {flight.numVol}
+                                  <br/>
+                                  Airline : {flight.numAvion}
+                                  <br/>
+                                  Model : {flight.code_comp}
+                                  <br/>
+                                  Depart : {flight.dep}
+                                  <br/>
+                                  Arival : {flight.arr}
+                                  <br/>
+                                  Speed : {flight.speed} Km/h
+                                </Popup>
+                             
                         </Marker>)
                     
 
@@ -60,9 +108,8 @@ export default Map;
 
 const Div = styled.div`
 
-background-color: #ffffff;
+display: flex;
+align-items: center;
+justify-content: center;
 
 `
-
-/**(68.508119, -141.636730)
- */
