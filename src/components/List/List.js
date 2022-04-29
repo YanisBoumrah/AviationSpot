@@ -1,6 +1,41 @@
-import React from 'react';
+import {useState,useEffect}from 'react';
 import styled from 'styled-components'
+import axios from 'axios'
+
+
 const List = () => {
+        const lat = '44.7'
+        const long='9.67'
+
+        const [apiData,setApiData]= useState({})
+
+        const [historiesData,setHistoriesData] = useState([])
+
+        const getHistoiries = ()=>{
+            axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories')
+            .then(response =>{
+                setHistoriesData(response.data)
+            })
+
+        }
+        const modifiedApi = ()=>{
+            axios.get(
+                `http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${long}&username=yanbo`
+            ).then(response =>{
+                setApiData(response.data)
+            })
+        }
+
+
+        useEffect( ()=> {
+
+            getHistoiries()
+            modifiedApi()
+        },[])
+
+
+
+
     return (
         <Div>
            <h1>List</h1>

@@ -8,30 +8,15 @@ import styled from 'styled-components'
  
 const markerIcon = new L.Icon({
     iconUrl: require("../../img/markerplane.png"),
-    iconSize: [20, 20],});
+    iconSize: [30, 30],});
 
 
 const Map = () => {
 
-    const [flightData,setFlightData] = useState([])
-    const [volData,setVolData] = useState([])
     const [data, setData] = useState([])
+    
 
-    const getFlights = ()=>{
-      axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories')
-        .then(response =>{
-          setFlightData(response.data)
-      })
-    }
-
-    const getVols = ()=>{
-      axios.get('https://apiazure20220422105354.azurewebsites.net/api/vols')
-        .then(response =>{
-          setVolData(response.data)
-      })
-    }
-
-    const fetchFinalData = () =>{
+    const fetchFinalData = (flightData , volData) =>{
       const result =
       flightData.map((x,index) =>{
         var item = {}
@@ -50,15 +35,18 @@ const Map = () => {
       setData(result)
     }
 
+    const testFonction = async () =>{
+      const reslt1 = await  axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories')
+      const reslt2 = await axios.get('https://apiazure20220422105354.azurewebsites.net/api/vols')
+      fetchFinalData(reslt1.data ,reslt2.data)
+    }
+
  
   useEffect(()=>{
-    getFlights()
-    getVols()
-    fetchFinalData()
+    testFonction()
   },[])
-
-  console.log(data)
-
+      
+ 
     return (
         <Div>
         <MapContainer center={[51.505, -0.09]} zoom={5} minZoom={3} maxZoom={20} maxBounds={[
@@ -66,7 +54,7 @@ const Map = () => {
         [85, -170],
         //north east
         [-85, 200]
-        ]} style={{ width: '80vw', height: '90vh'}}
+        ]} style={{ width: '100vw', height: '90vh'}}
         >
                 <TileLayer
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
@@ -75,6 +63,7 @@ const Map = () => {
                     />
                 {data.map( flight => {
                     return(<Marker 
+                    key={flight.id}
                         position={[flight.lat, flight.longe]}
                             icon={markerIcon}
                         >
@@ -109,7 +98,5 @@ export default Map;
 const Div = styled.div`
 
 display: flex;
-align-items: center;
-justify-content: center;
-
+justify-content:center;
 `

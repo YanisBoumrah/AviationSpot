@@ -14,9 +14,7 @@ function App() {
       <GlobalStyle/>
       <Navbar/>
       <Infobox />
-      <Fade delay={5000}>
       <Map/>
-      </Fade>
       <Footer/>
       
 
