@@ -1,6 +1,5 @@
 import Footer from './components/Footer/Footer';
 import Infobox from './components/Infobox/Infobox';
-import List from './components/List/List';
 import Map from './components/Map/Map'
 import Navbar from './components/Navbar/Navbar';
 import styled from 'styled-components'
@@ -16,8 +15,6 @@ function App() {
       <Infobox />
       <Map/>
       <Footer/>
-      
-
     </div>
   );
 }

@@ -4,36 +4,40 @@ import axios from 'axios'
 
 
 const List = () => {
-        const lat = '44.7'
-        const long='9.67'
 
         const [apiData,setApiData]= useState({})
 
         const [historiesData,setHistoriesData] = useState([])
 
-        const getHistoiries = ()=>{
-            axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories?page=1&itemsperpage=500')
-            .then(response =>{
-                setHistoriesData(response.data)
-            })
+        var dict = {}
 
+        const getHistoiries = async ()=>{
+           
+            const response = await axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories?datehist=01/05/2022&page=1&itemsperpage=900')
+            setHistoriesData(response.data)
         }
-        const modifiedApi = ()=>{
-            axios.get(
-                `http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${long}&username=yanbo`
-            ).then(response =>{
-                setApiData(response.data)
-            })
+
+        const getCountries = async (lat, long)=>{
+           
+            const result = await axios.get(`http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${long}&username=yanbo`)
+            return result.data
+        }
+
+        const process = () =>{
+             historiesData.forEach((item) => {
+                const temp = getCountries(item.lat, item.longe)
+                const t = temp.countyName
+                dict[t] = item.numVol
+                })
         }
 
 
         useEffect( ()=> {
-
             getHistoiries()
-            modifiedApi()
         },[])
 
-
+        process()
+        console.log(dict)
 
 
     return (

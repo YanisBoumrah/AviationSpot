@@ -14,7 +14,7 @@ const markerIcon = new L.Icon({
 const Map = () => {
 
     const [data, setData] = useState([])
-    const [search, setSearch] = useState("01/05/2022")//date par défaut qui est la 1ère date remplissage de la base de données
+    const [search, setSearch] = useState("27/04/2022")//date par défaut qui est la 1ère date remplissage de la base de données
     const [temp,setTemp] = useState("") 
     
 
