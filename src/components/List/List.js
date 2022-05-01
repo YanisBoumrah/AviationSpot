@@ -12,7 +12,7 @@ const List = () => {
         const [historiesData,setHistoriesData] = useState([])
 
         const getHistoiries = ()=>{
-            axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories')
+            axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories?page=1&itemsperpage=500')
             .then(response =>{
                 setHistoriesData(response.data)
             })

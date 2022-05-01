@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components'
 import {FaAvianex} from 'react-icons/fa'
 import { Container } from '../../globalStyles';
+import { useState,useEffect } from 'react';
 
 const Navbar = () => {
+
+  const [search,setSearch] = useState("")
+
     
     return (
         <NavDiv>
@@ -42,5 +46,5 @@ const LogoDiv = styled.div`
   font-size: 2rem;
   display: flex;
   align-items: center;
-    `
+  `
 
