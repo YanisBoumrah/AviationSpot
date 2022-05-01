@@ -56,19 +56,20 @@ const Map = () => {
         //north east
         [-85, 200]
         ]} style={{ width: '100vw', height: '90vh'}}
-        >
-            <SearchDiv>
-              <SearchInput 
-                  placeholder='dd/mm/yyyy'
-                  type="text"
-                  onChange={event =>{
-                    setTemp(event.target.value)
-                  }}
-              ></SearchInput>
-              <SearchButton
-                onClick={()=>setSearch(temp)}
-              >Search</SearchButton>
-            </SearchDiv>
+        >    
+              <SearchDiv>
+                <SearchInput 
+                    placeholder='dd/mm/yyyy'
+                    type="text"
+                    onChange={event =>{
+                      setTemp(event.target.value)
+                    }}
+                ></SearchInput>
+                <SearchButton
+                  onClick={()=>setSearch(temp)}
+                >Search</SearchButton>
+                <p>{data.length} vols trouvés</p>
+              </SearchDiv>
 
                 <TileLayer
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
@@ -114,6 +115,7 @@ const Div = styled.div`
 display: flex;
 justify-content:center;
 `
+
 
 const SearchDiv = styled.div`
    display:flex;
