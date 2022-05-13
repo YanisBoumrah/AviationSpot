@@ -14,7 +14,7 @@ const markerIcon = new L.Icon({
 const Map = () => {
 
     const [data, setData] = useState([])
-    const [search, setSearch] = useState("27/04/2022")//date par défaut qui est la 1ère date remplissage de la base de données
+    const [search, setSearch] = useState("07/05/2022")//date par défaut qui est la 1ère date remplissage de la base de données
     const [temp,setTemp] = useState("") 
     
 
@@ -38,8 +38,8 @@ const Map = () => {
     }
 
     const testFonction = async () =>{
-      const reslt1 = await  axios.get(`https://apiazure20220422105354.azurewebsites.net/api/histories?datehist=${search}&page=1&itemsperpage=900`)
-      const reslt2 = await axios.get(`https://apiazure20220422105354.azurewebsites.net/api/vols?datehist=${search}&page=1&itemsperpage=900`)
+      const reslt1 = await  axios.get(`https://apiazure20220513125654.azurewebsites.net/api/histories?datehist=${search}&page=1&itemsperpage=1000`)
+      const reslt2 = await axios.get(`https://apiazure20220513125654.azurewebsites.net/api/vols?datehist=${search}&page=1&itemsperpage=1000`)
       fetchFinalData(reslt1.data ,reslt2.data)
     }
  

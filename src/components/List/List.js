@@ -13,7 +13,7 @@ const List = () => {
 
         const getHistoiries = async ()=>{
            
-            const response = await axios.get('https://apiazure20220422105354.azurewebsites.net/api/histories?datehist=01/05/2022&page=1&itemsperpage=900')
+            const response = await axios.get('https://apiazure20220513125654.azurewebsites.net/api/histories?datehist=12/05/2022&page=1&itemsperpage=1000')
             setHistoriesData(response.data)
         }
 
